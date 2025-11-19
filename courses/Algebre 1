@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Algèbre 1 – HollowMath</title>
+</head>
+<body>
+    <h1>Algèbre 1</h1>
+    <p>Ceci est un exemple de cours.</p>
+
+    <h2>Définition</h2>
+    <p>Une application linéaire est…</p>
+
+    <a href="../courses.html">Retour aux cours</a>
+</body>
+</html>

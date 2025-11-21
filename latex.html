@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Présentation de LaTeX</title>
 
   <!-- MathJax -->
@@ -90,16 +90,16 @@
   <h1>Présentation du langage LaTeX</h1>
 
   <p>
-    <strong>LaTeX</strong> est un langage de composition de documents développé dans les années 1980 
-    pour faciliter la création de textes techniques, scientifiques et mathématiques. 
-    Il est basé sur le système <em>TeX</em> de Donald Knuth, reconnu pour sa typographie 
+    <strong>LaTeX</strong> est un langage de composition de documents développé dans les années 1980
+    pour faciliter la création de textes techniques, scientifiques et mathématiques.
+    Il est basé sur le système <em>TeX</em> de Donald Knuth, reconnu pour sa typographie
     d’une qualité exceptionnelle.
   </p>
 
   <p>
-    Contrairement aux éditeurs WYSIWYG tels que Word ou Google Docs, LaTeX sépare complètement 
-    le <em>contenu</em> de la <em>mise en forme</em>. L’auteur écrit un texte structuré contenant 
-    des commandes indiquant l’organisation du document (titres, sections, formules, références…). 
+    Contrairement aux éditeurs WYSIWYG tels que Word ou Google Docs, LaTeX sépare complètement
+    le <em>contenu</em> de la <em>mise en forme</em>. L’auteur écrit un texte structuré contenant
+    des commandes indiquant l’organisation du document (titres, sections, formules, références…).
     LaTeX se charge ensuite de produire un PDF parfaitement mis en page.
   </p>
 
@@ -115,24 +115,24 @@
 
   <h2>Histoire en bref</h2>
   <p>
-    TeX est créé en 1978 par <strong>Donald Knuth</strong> pour améliorer la qualité des livres 
-    scientifiques. En 1984, <strong>Leslie Lamport</strong> développe LaTeX, une surcouche 
-    simplifiant l’écriture de documents structurés. Depuis, LaTeX est devenu un standard 
+    TeX est créé en 1978 par <strong>Donald Knuth</strong> pour améliorer la qualité des livres
+    scientifiques. En 1984, <strong>Leslie Lamport</strong> développe LaTeX, une surcouche
+    simplifiant l’écriture de documents structurés. Depuis, LaTeX est devenu un standard
     international dans les sciences, l’ingénierie, les mathématiques et l’édition académique.
   </p>
 
   <h2>Exemples de code LaTeX et rendu</h2>
   <p>
-    Voici quelques exemples typiques de LaTeX. Tu peux afficher ou cacher le code 
+    Voici quelques exemples typiques de LaTeX. Tu peux afficher ou cacher le code
     associé à chaque formule.
   </p>
 
   <!-- Exemple 1 -->
   <div class="example-block">
     <button class="toggle-btn" onclick="toggleCode(this)">Afficher le code</button>
-    <pre class="latex-code">&amp;#91;
+    <pre class="latex-code">\\[
 E = mc^2
-&amp;#93;</pre>
+\\]</pre>
 
     <div>
       \[
@@ -144,9 +144,9 @@ E = mc^2
   <!-- Exemple 2 -->
   <div class="example-block">
     <button class="toggle-btn" onclick="toggleCode(this)">Afficher le code</button>
-    <pre class="latex-code">&amp;#91;
+    <pre class="latex-code">\\[
 \frac{d}{dx} \left( x^2 + 3x + 1 \right) = 2x + 3
-&amp;#93;</pre>
+\\]</pre>
 
     <div>
       \[
@@ -158,12 +158,12 @@ E = mc^2
   <!-- Exemple 3 -->
   <div class="example-block">
     <button class="toggle-btn" onclick="toggleCode(this)">Afficher le code</button>
-    <pre class="latex-code">&amp;#91;
+    <pre class="latex-code">\\[
 \begin{pmatrix}
 1 & 2 \\
 3 & 4
 \end{pmatrix}
-&amp;#93;</pre>
+\\]</pre>
 
     <div>
       \[
@@ -178,9 +178,9 @@ E = mc^2
   <!-- Exemple 4 -->
   <div class="example-block">
     <button class="toggle-btn" onclick="toggleCode(this)">Afficher le code</button>
-    <pre class="latex-code">&amp;#91;
+    <pre class="latex-code">\\[
 \sum_{n=1}^{+\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
-&amp;#93;</pre>
+\\]</pre>
 
     <div>
       \[
@@ -188,7 +188,6 @@ E = mc^2
       \]
     </div>
   </div>
-
 
   <script>
     function toggleCode(btn) {

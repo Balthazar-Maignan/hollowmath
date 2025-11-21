@@ -1,281 +1,128 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Exemples : blocs LaTeX compilés (KaTeX)</title>
+  <meta charset="UTF-8">
+  <title>Présentation de LaTeX</title>
 
-  <!-- KaTeX CSS + JS (CDN) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" integrity="sha384-+Caz6mH+Qk6zG3q5v4q0KqjV8Yd0pD7o+2/9V1uNw6gWfW9h0yzqf1kG4J6g1G8y" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" integrity="sha384-y9m7nq8xX+v4VQm1Vv+az3+S7rT9v1Gq8Gkq4x1zW8E1QdF7Fm2g7B6Z5C3t6G2y" crossorigin="anonymous"></script>
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
 
   <style>
-    :root{
-      --bg:#0f1724;
-      --card:#0b1220;
-      --muted:#9aa4b2;
-      --accent:#60a5fa;
-      --glass: rgba(255,255,255,0.03);
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0 auto;
+      max-width: 900px;
+      padding: 20px;
+      line-height: 1.6;
+      background: #f5f7fa;
+      color: #1a1c1f;
     }
-    body{
-      margin:0;
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg, #071021 0%, #0b1320 100%);
-      color:#e6eef6;
-      padding:28px;
+    h1,h2 {
+      font-weight: 600;
+      color: #254e9e;
     }
-    h1{ margin:0 0 18px 0; font-size:20px; color:var(--accent); }
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
-      gap:18px;
-      align-items:start;
+    .example-block {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 18px 0;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      border-left: 6px solid #4b7bec;
     }
-    .card{
-      background: linear-gradient(180deg,var(--card), rgba(11,18,32,0.9));
-      border-radius:12px;
-      padding:14px;
-      box-shadow: 0 6px 18px rgba(3,6,15,0.6);
-      border: 1px solid rgba(255,255,255,0.03);
-      min-height:180px;
+    .latex-code {
+      font-family: ui-monospace, "Courier New", monospace;
+      background: #eef2f7;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-bottom: 12px;
+      white-space: pre-wrap;
     }
-    .card .meta{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:center;
-      margin-bottom:10px;
-    }
-    .muted{ color:var(--muted); font-size:13px; }
-    .controls{ display:flex; gap:8px; }
-    button{
-      background:var(--glass);
-      border:1px solid rgba(255,255,255,0.04);
-      color:var(--accent);
-      padding:6px 10px;
-      font-size:13px;
-      border-radius:8px;
-      cursor:pointer;
-      transition: transform .08s ease, opacity .08s;
-    }
-    button:active{ transform:translateY(1px); }
-    textarea{
-      width:100%;
-      min-height:84px;
-      resize:vertical;
-      background:transparent;
-      border:1px dashed rgba(255,255,255,0.04);
-      padding:10px;
-      color:#dbeafe;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
-      font-size:14px;
-      border-radius:8px;
-      margin-bottom:10px;
-    }
-    .render{
-      background: rgba(255,255,255,0.02);
-      padding:14px;
-      border-radius:10px;
-      min-height:48px;
-      font-size:18px;
-      color:#e6eef6;
-    }
-    .error{
-      color:#ffb4b4;
-      font-size:13px;
-      margin-top:8px;
-      background: rgba(255,80,80,0.04);
-      padding:8px;
-      border-radius:8px;
-    }
-    .small{ font-size:13px; color:var(--muted); }
-    .topbar{ display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; gap:12px; flex-wrap:wrap; }
-    .kbd{ background:rgba(255,255,255,0.03); padding:6px 8px; border-radius:6px; font-family: ui-monospace, monospace; color:var(--muted); }
   </style>
 </head>
 <body>
-  <div class="topbar">
+
+  <h1>Qu’est-ce que LaTeX ?</h1>
+
+  <p>
+    <strong>LaTeX</strong> est un langage de composition de documents utilisé dans de nombreux 
+    domaines scientifiques et universitaires. Contrairement aux éditeurs classiques où l’on 
+    manipule directement la mise en forme, LaTeX repose sur l’écriture d’un fichier texte 
+    contenant des commandes décrivant la structure du document.
+  </p>
+
+  <p>
+    Il excelle pour produire des documents techniquement exigeants : articles scientifiques, 
+    rapports, thèses, livres, notes de cours… Son rendu typographique est considéré comme 
+    l’un des plus élégants et professionnels, notamment pour les mathématiques.
+  </p>
+
+  <p>
+    Grâce à des commandes simples, on peut générer des équations, tableaux, références 
+    croisées, bibliographies ou encore des environnements complexes, tout en gardant une 
+    mise en page cohérente et automatisée.
+  </p>
+
+  <h2>Exemples de LaTeX rendu</h2>
+
+  <!-- Exemple 1 -->
+  <div class="example-block">
+    <div class="latex-code">\[
+E = mc^2
+\]</div>
     <div>
-      <h1>Blocs LaTeX compilés — KaTeX (exemples)</h1>
-      <div class="small">Éditez le LaTeX dans chaque bloc. Le rendu est mis à jour automatiquement.</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="muted">Utilise KaTeX — rendu rapide côté client</div>
-      <div class="kbd">Double-clic sur la zone de rendu pour copier le code source</div>
+      \[
+      E = mc^2
+      \]
     </div>
   </div>
 
-  <div class="grid" id="grid">
-
-    <!-- Bloc 1: Formule inline -->
-    <section class="card">
-      <div class="meta">
-        <div><strong>Inline / texte</strong><div class="muted">petite formule au sein d'une phrase</div></div>
-        <div class="controls">
-          <button data-action="toggle-display">Affichage: inline</button>
-          <button data-action="copy-render">Copier rendu</button>
-        </div>
-      </div>
-
-      <textarea class="latex-input" spellcheck="false">E=mc^2</textarea>
-
-      <div class="render" data-role="render" title="Double-clic pour copier la formule rendue"></div>
-      <div class="error" style="display:none" data-role="error"></div>
-    </section>
-
-    <!-- Bloc 2: Équation affichée (display) -->
-    <section class="card">
-      <div class="meta">
-        <div><strong>Équation affichée</strong><div class="muted">ex : système, équation alignée</div></div>
-        <div class="controls">
-          <button data-action="toggle-display">Affichage: display</button>
-          <button data-action="copy-render">Copier rendu</button>
-        </div>
-      </div>
-
-      <textarea class="latex-input" spellcheck="false">\begin{aligned}
-\hat{y} &= \beta_0 + \beta_1 x + \varepsilon \\
-\text{avec } & \varepsilon \sim \mathcal{N}(0,\sigma^2)
-\end{aligned}</textarea>
-
-      <div class="render" data-role="render" title="Double-clic pour copier la formule rendue"></div>
-      <div class="error" style="display:none" data-role="error"></div>
-    </section>
-
-    <!-- Bloc 3: Matrice -->
-    <section class="card">
-      <div class="meta">
-        <div><strong>Matrice</strong><div class="muted">ex : matrices et parenthèses</div></div>
-        <div class="controls">
-          <button data-action="toggle-display">Affichage: display</button>
-          <button data-action="copy-render">Copier rendu</button>
-        </div>
-      </div>
-
-      <textarea class="latex-input" spellcheck="false">\begin{pmatrix}
-1 & 0 & 0 \\
-0 & \cos\theta & -\sin\theta \\
-0 & \sin\theta & \cos\theta
-\end{pmatrix}</textarea>
-
-      <div class="render" data-role="render" title="Double-clic pour copier la formule rendue"></div>
-      <div class="error" style="display:none" data-role="error"></div>
-    </section>
-
-    <!-- Bloc 4: Théorème / texte -->
-    <section class="card">
-      <div class="meta">
-        <div><strong>Théorème / texte mathématique</strong><div class="muted">ex : texte + formule</div></div>
-        <div class="controls">
-          <button data-action="toggle-display">Affichage: inline</button>
-          <button data-action="copy-render">Copier rendu</button>
-        </div>
-      </div>
-
-      <textarea class="latex-input" spellcheck="false">Pour tout \(\varepsilon>0\), il existe N tel que pour n>N, \(|a_n - L| < \varepsilon\).</textarea>
-
-      <div class="render" data-role="render" title="Double-clic pour copier la formule rendue"></div>
-      <div class="error" style="display:none" data-role="error"></div>
-    </section>
-
+  <!-- Exemple 2 -->
+  <div class="example-block">
+    <div class="latex-code">\[
+\frac{d}{dx} \left( x^2 + 3x + 1 \right) = 2x + 3
+\]</div>
+    <div>
+      \[
+      \frac{d}{dx} \left( x^2 + 3x + 1 \right) = 2x + 3
+      \]
+    </div>
   </div>
 
-  <script>
-    // Utilitaires
-    const debounce = (fn, wait=300) => {
-      let t;
-      return (...args) => { clearTimeout(t); t = setTimeout(()=>fn(...args), wait); };
-    };
+  <!-- Exemple 3 -->
+  <div class="example-block">
+    <div class="latex-code">\[
+\begin{pmatrix}
+1 & 2 \\
+3 & 4
+\end{pmatrix}
+\]</div>
+    <div>
+      \[
+      \begin{pmatrix}
+      1 & 2 \\
+      3 & 4
+      \end{pmatrix}
+      \]
+    </div>
+  </div>
 
-    // Initial state per card
-    function initCards(){
-      document.querySelectorAll('.card').forEach(card => {
-        // default: decide displayMode by button text
-        const btn = card.querySelector('button[data-action="toggle-display"]');
-        btn._displayMode = btn.textContent.includes('display') || btn.textContent.includes('display') || btn.textContent.includes(': display');
-        // normalize text
-        setButtonLabel(btn, btn._displayMode);
+  <!-- Exemple 4 -->
+  <div class="example-block">
+    <div class="latex-code">\[
+\sum_{n=1}^{+\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+\]</div>
+    <div>
+      \[
+      \sum_{n=1}^{+\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+      \]
+    </div>
+  </div>
 
-        const ta = card.querySelector('.latex-input');
-        const out = card.querySelector('[data-role="render"]');
-        const err = card.querySelector('[data-role="error"]');
-
-        // render initially
-        renderLatexBlock(ta.value, out, err, btn._displayMode);
-
-        // live update (debounced)
-        const liveRender = debounce((v)=> renderLatexBlock(v, out, err, btn._displayMode), 250);
-        ta.addEventListener('input', e => liveRender(e.target.value));
-
-        // toggle display mode
-        btn.addEventListener('click', () => {
-          btn._displayMode = !btn._displayMode;
-          setButtonLabel(btn, btn._displayMode);
-          renderLatexBlock(ta.value, out, err, btn._displayMode);
-        });
-
-        // copy rendered as text (fallback to source if katex fails)
-        const copyBtn = card.querySelector('button[data-action="copy-render"]');
-        copyBtn.addEventListener('click', async () => {
-          // prefer source
-          const src = ta.value;
-          try {
-            await navigator.clipboard.writeText(src);
-            copyBtn.textContent = 'Copié ✓';
-            setTimeout(()=> copyBtn.textContent = 'Copier rendu', 900);
-          } catch(e){
-            copyBtn.textContent = 'Erreur copie';
-            setTimeout(()=> copyBtn.textContent = 'Copier rendu', 900);
-          }
-        });
-
-        // double-click render area to copy LaTeX source
-        out.addEventListener('dblclick', async () => {
-          try {
-            await navigator.clipboard.writeText(ta.value);
-            out.style.outline = '2px solid rgba(96,165,250,0.18)';
-            setTimeout(()=> out.style.outline = 'none', 600);
-          } catch(e){}
-        });
-      });
-    }
-
-    function setButtonLabel(btn, displayMode){
-      btn.textContent = 'Affichage: ' + (displayMode ? 'display' : 'inline');
-    }
-
-    // Render one block using KaTeX
-    function renderLatexBlock(latexSource, outEl, errEl, displayMode=false){
-      // Clear previous
-      outEl.innerHTML = '';
-      errEl.style.display = 'none';
-      try {
-        // If the source contains \( ... \) or \[ ... \] or contains explicit environments,
-        // prefer rendering the whole string as-is. KaTeX expects raw TeX.
-        // For convenience: if user wrote inline \( ... \) keep it; otherwise send as-is.
-        // Use throwOnError false to show best-effort rendering and get errors.
-        katex.render(latexSource, outEl, {
-          throwOnError: false,
-          displayMode: displayMode,
-          trust: false,
-          output: 'html'
-        });
-      } catch (err) {
-        // katex.render shouldn't throw when throwOnError false, but guard anyway
-        errEl.style.display = 'block';
-        errEl.textContent = 'Erreur KaTeX: ' + (err && err.message ? err.message : String(err));
-      }
-    }
-
-    // Wait for KaTeX to be loaded, then init cards
-    (function waitKaTeX(){
-      if (window.katex){
-        initCards();
-      } else {
-        // wait a bit and retry (defensive)
-        setTimeout(waitKaTeX, 80);
-      }
-    })();
-  </script>
 </body>
 </html>

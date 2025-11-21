@@ -53,14 +53,16 @@
     }
 
     .latex-code {
-      font-family: ui-monospace, "Courier New", monospace;
       background: #eef2f7;
       padding: 10px;
       border-radius: 6px;
       font-size: 14px;
       margin-bottom: 12px;
       white-space: pre-wrap;
+      font-family: ui-monospace, "Courier New", monospace;
       display: none; /* masqué par défaut */
+      user-select: text;
+      overflow-x: auto;
     }
 
     .toggle-btn {
@@ -128,9 +130,9 @@
   <!-- Exemple 1 -->
   <div class="example-block">
     <button class="toggle-btn" onclick="toggleCode(this)">Afficher le code</button>
-    <div class="latex-code">\[
+    <pre class="latex-code">&amp;#91;
 E = mc^2
-\]</div>
+&amp;#93;</pre>
 
     <div>
       \[
@@ -142,9 +144,9 @@ E = mc^2
   <!-- Exemple 2 -->
   <div class="example-block">
     <button class="toggle-btn" onclick="toggleCode(this)">Afficher le code</button>
-    <div class="latex-code">\[
+    <pre class="latex-code">&amp;#91;
 \frac{d}{dx} \left( x^2 + 3x + 1 \right) = 2x + 3
-\]</div>
+&amp;#93;</pre>
 
     <div>
       \[
@@ -156,12 +158,12 @@ E = mc^2
   <!-- Exemple 3 -->
   <div class="example-block">
     <button class="toggle-btn" onclick="toggleCode(this)">Afficher le code</button>
-    <div class="latex-code">\[
+    <pre class="latex-code">&amp;#91;
 \begin{pmatrix}
 1 & 2 \\
 3 & 4
 \end{pmatrix}
-\]</div>
+&amp;#93;</pre>
 
     <div>
       \[
@@ -176,9 +178,9 @@ E = mc^2
   <!-- Exemple 4 -->
   <div class="example-block">
     <button class="toggle-btn" onclick="toggleCode(this)">Afficher le code</button>
-    <div class="latex-code">\[
+    <pre class="latex-code">&amp;#91;
 \sum_{n=1}^{+\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
-\]</div>
+&amp;#93;</pre>
 
     <div>
       \[

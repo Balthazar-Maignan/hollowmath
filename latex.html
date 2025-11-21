@@ -22,18 +22,36 @@
       background: #f5f7fa;
       color: #1a1c1f;
     }
-    h1,h2 {
+
+    h1, h2, h3 {
       font-weight: 600;
       color: #254e9e;
     }
+
+    .button-back {
+      display: inline-block;
+      background: #254e9e;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 15px;
+      margin-bottom: 25px;
+      transition: background .2s;
+    }
+    .button-back:hover {
+      background: #1a3c7c;
+    }
+
     .example-block {
       background: white;
       padding: 20px;
       border-radius: 10px;
-      margin: 18px 0;
+      margin: 22px 0;
       box-shadow: 0 3px 10px rgba(0,0,0,0.08);
       border-left: 6px solid #4b7bec;
     }
+
     .latex-code {
       font-family: ui-monospace, "Courier New", monospace;
       background: #eef2f7;
@@ -42,39 +60,78 @@
       font-size: 14px;
       margin-bottom: 12px;
       white-space: pre-wrap;
+      display: none; /* masqué par défaut */
+    }
+
+    .toggle-btn {
+      background: #4b7bec;
+      border: none;
+      color: white;
+      padding: 7px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-bottom: 10px;
+      transition: background .2s;
+    }
+    .toggle-btn:hover {
+      background: #3a66c4;
     }
   </style>
 </head>
+
 <body>
 
-  <h1>Qu’est-ce que LaTeX ?</h1>
+  <!-- Bouton retour -->
+  <a class="button-back" href="index.html">← Retour à l'accueil</a>
+
+  <h1>Présentation du langage LaTeX</h1>
 
   <p>
-    <strong>LaTeX</strong> est un langage de composition de documents utilisé dans de nombreux 
-    domaines scientifiques et universitaires. Contrairement aux éditeurs classiques où l’on 
-    manipule directement la mise en forme, LaTeX repose sur l’écriture d’un fichier texte 
-    contenant des commandes décrivant la structure du document.
+    <strong>LaTeX</strong> est un langage de composition de documents développé dans les années 1980 
+    pour faciliter la création de textes techniques, scientifiques et mathématiques. 
+    Il est basé sur le système <em>TeX</em> de Donald Knuth, reconnu pour sa typographie 
+    d’une qualité exceptionnelle.
   </p>
 
   <p>
-    Il excelle pour produire des documents techniquement exigeants : articles scientifiques, 
-    rapports, thèses, livres, notes de cours… Son rendu typographique est considéré comme 
-    l’un des plus élégants et professionnels, notamment pour les mathématiques.
+    Contrairement aux éditeurs WYSIWYG tels que Word ou Google Docs, LaTeX sépare complètement 
+    le <em>contenu</em> de la <em>mise en forme</em>. L’auteur écrit un texte structuré contenant 
+    des commandes indiquant l’organisation du document (titres, sections, formules, références…). 
+    LaTeX se charge ensuite de produire un PDF parfaitement mis en page.
   </p>
 
+  <h2>Pourquoi utiliser LaTeX ?</h2>
+
+  <ul>
+    <li><strong>Qualité typographique</strong> exceptionnelle, surtout pour les mathématiques.</li>
+    <li><strong>Stabilité</strong> et cohérence dans les documents longs (mémoire, thèse, livre…).</li>
+    <li><strong>Automatisation</strong> des références, bibliographies, numérotations, index, etc.</li>
+    <li><strong>Fichiers durables</strong>, basés sur du simple texte.</li>
+    <li><strong>Large communauté</strong> et de nombreux packages.</li>
+  </ul>
+
+  <h2>Histoire en bref</h2>
   <p>
-    Grâce à des commandes simples, on peut générer des équations, tableaux, références 
-    croisées, bibliographies ou encore des environnements complexes, tout en gardant une 
-    mise en page cohérente et automatisée.
+    TeX est créé en 1978 par <strong>Donald Knuth</strong> pour améliorer la qualité des livres 
+    scientifiques. En 1984, <strong>Leslie Lamport</strong> développe LaTeX, une surcouche 
+    simplifiant l’écriture de documents structurés. Depuis, LaTeX est devenu un standard 
+    international dans les sciences, l’ingénierie, les mathématiques et l’édition académique.
   </p>
 
-  <h2>Exemples de LaTeX rendu</h2>
+  <h2>Exemples de code LaTeX et rendu</h2>
+  <p>
+    Voici quelques exemples typiques de LaTeX. Tu peux afficher ou cacher le code 
+    associé à chaque formule.
+  </p>
 
   <!-- Exemple 1 -->
   <div class="example-block">
+    <button class="toggle-btn" onclick="toggleCode(this)">Afficher le code</button>
     <div class="latex-code">\[
 E = mc^2
 \]</div>
+
     <div>
       \[
       E = mc^2
@@ -84,9 +141,11 @@ E = mc^2
 
   <!-- Exemple 2 -->
   <div class="example-block">
+    <button class="toggle-btn" onclick="toggleCode(this)">Afficher le code</button>
     <div class="latex-code">\[
 \frac{d}{dx} \left( x^2 + 3x + 1 \right) = 2x + 3
 \]</div>
+
     <div>
       \[
       \frac{d}{dx} \left( x^2 + 3x + 1 \right) = 2x + 3
@@ -96,12 +155,14 @@ E = mc^2
 
   <!-- Exemple 3 -->
   <div class="example-block">
+    <button class="toggle-btn" onclick="toggleCode(this)">Afficher le code</button>
     <div class="latex-code">\[
 \begin{pmatrix}
 1 & 2 \\
 3 & 4
 \end{pmatrix}
 \]</div>
+
     <div>
       \[
       \begin{pmatrix}
@@ -114,15 +175,28 @@ E = mc^2
 
   <!-- Exemple 4 -->
   <div class="example-block">
+    <button class="toggle-btn" onclick="toggleCode(this)">Afficher le code</button>
     <div class="latex-code">\[
 \sum_{n=1}^{+\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
 \]</div>
+
     <div>
       \[
       \sum_{n=1}^{+\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
       \]
     </div>
   </div>
+
+
+  <script>
+    function toggleCode(btn) {
+      const block = btn.nextElementSibling;
+      const visible = block.style.display === "block";
+
+      block.style.display = visible ? "none" : "block";
+      btn.textContent = visible ? "Afficher le code" : "Masquer le code";
+    }
+  </script>
 
 </body>
 </html>

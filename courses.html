@@ -30,31 +30,34 @@ function filterCourses() {
     const list = document.getElementById("courseList");
     const items = Array.from(list.querySelectorAll(".course"));
 
-    // Calcul de pertinence
     items.forEach(item => {
         const title = item.dataset.title.toLowerCase();
-
         let score = 0;
 
-        if (title.includes(query)) score += 10;
-        if (title.startsWith(query)) score += 5;
-        if (title === query) score += 20;
+        if (query.length > 0) {
+            if (title.includes(query)) score += 10;
+            if (title.startsWith(query)) score += 5;
+            if (title === query) score += 20;
+        } else {
+            // Si la barre est vide, tout revient avec score = 1 pour éviter 0
+            score = 1;
+        }
 
         item.dataset.score = score;
     });
 
-    // Tri par pertinence (score)
+    // Tri par pertinence
     items.sort((a, b) => b.dataset.score - a.dataset.score);
 
-    // Réinjection dans le DOM
+    // Réaffichage complet
     list.innerHTML = "";
     items.forEach(item => {
-        if (item.dataset.score > 0 || query === "") {
+        if (item.dataset.score > 0) {
             item.style.display = "list-item";
-            list.appendChild(item);
         } else {
             item.style.display = "none";
         }
+        list.appendChild(item);
     });
 }
 </script>

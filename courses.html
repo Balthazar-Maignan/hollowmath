@@ -1,15 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Courses – HollowMath</title>
+<meta charset="UTF-8">
+<title>Cours de Maths</title>
+<style>
+    body { font-family: Arial, sans-serif; }
+    #searchBar { width: 300px; padding: 8px; margin-bottom: 20px; }
+    .course { margin: 8px 0; }
+</style>
 </head>
 <body>
-    <h1>Courses</h1>
-    <p>Bienvenue dans la section des cours.</p>
 
-    <ul>
-        <li><a href="courses/algebre1.html">Cours d’Algèbre 1 (exemple)</a></li>
-    </ul>
+<h1>Liste des cours</h1>
+
+<input type="text" id="searchBar" placeholder="Rechercher un cours..." oninput="filterCourses()">
+
+<ul id="courseList">
+    <!-- Exemple de cours -->
+    <li class="course" data-title="Equations du second degré"><a href="courses/equations_second_degre.html">Équations du second degré</a></li>
+    <li class="course" data-title="Fonctions dérivées"><a href="courses/fonctions_derivees.html">Fonctions dérivées</a></li>
+    <li class="course" data-title="Géométrie analytique"><a href="courses/geometrie_analytique.html">Géométrie analytique</a></li>
+    <li class="course" data-title="Probabilités conditionnelles"><a href="courses/probabilites_conditionnelles.html">Probabilités conditionnelles</a></li>
+    <li class="course" data-title="Algèbre 1"><a href="courses/algbre1.html">Algèbre 1</a></li>
+</ul>
+
+<script>
+function filterCourses() {
+    const query = document.getElementById("searchBar").value.toLowerCase();
+    const list = document.getElementById("courseList");
+    const items = Array.from(list.querySelectorAll(".course"));
+
+    // Calcul de pertinence
+    items.forEach(item => {
+        const title = item.dataset.title.toLowerCase();
+
+        let score = 0;
+
+        if (title.includes(query)) score += 10;
+        if (title.startsWith(query)) score += 5;
+        if (title === query) score += 20;
+
+        item.dataset.score = score;
+    });
+
+    // Tri par pertinence (score)
+    items.sort((a, b) => b.dataset.score - a.dataset.score);
+
+    // Réinjection dans le DOM
+    list.innerHTML = "";
+    items.forEach(item => {
+        if (item.dataset.score > 0 || query === "") {
+            item.style.display = "list-item";
+            list.appendChild(item);
+        } else {
+            item.style.display = "none";
+        }
+    });
+}
+</script>
+
 </body>
 </html>

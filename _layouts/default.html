@@ -42,8 +42,38 @@
 </head>
 
 <body>
+    test
     <!-- Contenu principal -->
     {{ content }}
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+
+            while (walker.nextNode()) {
+                const node = walker.currentNode;
+                const text = node.textContent;
+
+                // détection des liens [[...]]
+                if (text.includes('[[')) {
+                    const replaced = text.replace(/\[\[([^\]]+)\]\]/g, (match, p1) => {
+                        let target = p1.trim();
+
+                        // Si pas d'extension → ajouter .html
+                        if (!target.includes('.')) {
+                            target = target + ".html";
+                        }
+
+                        return `<a href="${target}">${p1}</a>`;
+                    });
+
+                    // Remplacer le texte par du HTML
+                    const span = document.createElement("span");
+                    span.innerHTML = replaced;
+                    node.parentNode.replaceChild(span, node);
+                }
+            }
+        });
+    </script>
 
 </body>
 </html>

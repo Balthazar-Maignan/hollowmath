@@ -16,3 +16,10 @@ Voici un exemple :
 \[
 \frac{d}{dx}(x^2) = 2x
 \]
+
+
+\[
+f'(x) = 2x
+\]
+
+\( f'(x) \)

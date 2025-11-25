@@ -24,3 +24,5 @@ $
 $f'(x)$
 
 $\int f(x)=F(x)$
+
+Essaie de cliquer sur ça : [[algebre1.html]] [[algebre1]]

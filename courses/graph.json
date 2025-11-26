@@ -1,0 +1,29 @@
+---
+layout: null
+---
+{
+  "nodes": [
+    {% assign docs = site.pages | where_exp:"p", "p.path contains 'courses/'" %}
+    {% for page in docs %}
+    {
+      "id": "{{ page.url }}",
+      "title": "{{ page.title | escape }}"
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ],
+  "links": [
+    {% for page in docs %}
+      {% assign content = page.content %}
+      {% assign regex = '\[.*?\]\((.*?)\)' %}
+      {% assign matches = content | regex_findall: regex %}
+      {% for m in matches %}
+        {% if m contains '/courses/' %}
+        {
+          "source": "{{ page.url }}",
+          "target": "{{ m }}"
+        }{% unless forloop.last and forloop.parentloop.last %},{% endunless %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  ]
+}

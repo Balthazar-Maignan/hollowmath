@@ -5,25 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HollowMath</title>
     <style>
-        .left-block {
-        display: flex;
-        align-items: center;
-        gap: 10px; /* espace entre HollowMath et le ? */
-        }
+        .logo {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+}
 
-        .help-icon {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: #3a86ff;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-        }
+.help-icon {
+    position: absolute;
+    right: -28px;   /* décalage horizontal */
+    top: 50%;
+    transform: translateY(-50%); /* centre verticalement */
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #3a86ff;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
         body {
             margin: 0;
